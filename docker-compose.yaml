@@ -1,14 +1,14 @@
 version: '2'
 
 networks:
-  network-kafka-test:
+  network-spring-kafka-test:
     driver: bridge
 
 services:
   kafka-server:
     image: 'bitnami/kafka:latest'
     networks:
-      - network-kafka-test
+      - network-spring-kafka-test
     ports:
       - "9094:9094"
     environment:
@@ -25,7 +25,7 @@ services:
     depends_on:
       - kafka-server
     networks:
-      - network-kafka-test
+      - network-spring-kafka-test
     command: 
       - /bin/sh
       - -c
@@ -40,13 +40,13 @@ services:
 
         echo 'Successfully created the following topics:'
         kafka-topics.sh --list --bootstrap-server kafka-server:9092
-  kafka-test-app:
+  spring-kafka-test-app:
     build:
       context: .
       dockerfile: Dockerfile
-    image: 'kafka-test:latest'
+    image: 'spring-kafka-test:latest'
     networks:
-      - network-kafka-test
+      - network-spring-kafka-test
     depends_on:
       - kafka-server
     deploy:
