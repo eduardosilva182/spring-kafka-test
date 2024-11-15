@@ -8,7 +8,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KafkaListenerAnnotation {
+public class SpringKafkaListenerAnnotation {
 
     @KafkaListener(id = "listener1", topics = "test-topic-annotation", autoStartup = "true", concurrency = "1", groupId = "groupIdAnotado", clientIdPrefix = "prefix", filter = "kafkaFilter")
     @SendTo("test-topic")

@@ -1,6 +1,6 @@
 package br.com.edu.kafkatest;
 
-import br.com.edu.kafkatest.service.KafkaMessageListener;
+import br.com.edu.kafkatest.service.SpringKafkaMessageListener;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -15,7 +15,6 @@ import org.springframework.kafka.core.*;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.listener.KafkaMessageListenerContainer;
-import org.springframework.kafka.listener.MessageListener;
 import org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter;
 
 import java.util.HashMap;
@@ -23,13 +22,13 @@ import java.util.Map;
 
 @SpringBootApplication
 @EnableKafka
-public class KafkaTestApplication {
+public class SpringKafkaTestApplication {
 
 	/**
 	 * Configurações básicas da aplicação
 	 */
 	public static void main(String[] args) {
-		SpringApplication.run(KafkaTestApplication.class, args);
+		SpringApplication.run(SpringKafkaTestApplication.class, args);
 	}
 
 	/**
@@ -51,7 +50,7 @@ public class KafkaTestApplication {
 	 */
 	@Bean
 	public KafkaMessageListenerContainer<String, String> kafkaMessageListenerContainer() {
-		var kafkaMessageListener = new KafkaMessageListener();
+		var kafkaMessageListener = new SpringKafkaMessageListener();
 		var kafkaFilter = new KafkaFilter();
 
 		var messageListenerWithFilter = new FilteringMessageListenerAdapter<String, String>(kafkaMessageListener, kafkaFilter);

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class KafkaProducerService {
+public class SpringKafkaProducerService {
 
     public final KafkaTemplate<String, String> kafkaTemplate;
 
